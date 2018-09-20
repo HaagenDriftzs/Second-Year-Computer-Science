@@ -1,0 +1,41 @@
+model Library
+
+
+class Person
+	attributes 
+		name : String
+		address : String
+	operations
+	end
+	
+class Member 
+	attributes 
+		pay : Integer init = 0
+	operations
+		setPay(x : Integer)
+			begin
+				self.pay : = x;
+			end
+	end
+	
+class Library1 < Member
+	attributes
+		name : String
+	operations
+		hire(p : Book)
+			begin
+				insert(p,self) into isIn
+			end
+	end
+
+ association isIn between
+	Member[1..*] role works
+	Library1[1]
+end
+  
+constraints
+
+context Library1::addBook(p:Member) 
+    pre cond1: self.books->excludes(p)
+    post cond2: self.books->includes(p)
+

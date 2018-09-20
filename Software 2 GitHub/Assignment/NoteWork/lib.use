@@ -1,0 +1,174 @@
+model Library
+
+enum DVDStatus { available, unavailable, onreserve}
+
+class Book
+  attributes
+    title : String
+    author : String
+    no_copies : Integer
+    no_onshelf : Integer
+    reserved : Integer
+  operations
+    borrow()
+    begin
+        self.no_onshelf := self.no_onshelf - 1
+    end
+    hold()
+    begin
+        self.reserved := self.reserved - 1
+    end
+    return()
+    begin
+        self.no_onshelf := self.no_onshelf +1
+    end
+    pre copiesOnShelf: no_copies >0
+    post: no_onshelf = no_onshelf@pre - 1
+end
+		
+class Copy
+  attributes
+    status : String
+  operations
+    borrow( m : Member)
+    begin
+        self.status := 'onLoan';
+        self.book.borrow()
+    end
+    hold( p : Member)
+    begin
+        self.status := 'onReserved';
+        self.book.hold()
+    end
+    return( a : Member)
+    begin
+        self.status := 'available';
+        self.book.return()
+    end
+end
+
+
+    
+class Member 
+  attributes 
+    name : String
+    address : String
+    no_onloan : Integer
+    no_onhold : Integer
+    status : String
+    fine : Integer
+  operations
+    borrow(c : Copy)
+    begin
+        insert (self, c) into HasBorrowed;
+        self.no_onloan := self.no_onloan + 1;
+        c.borrow(self)
+    end
+    hold(s : Copy)
+    begin
+        insert (self,s) into HasReserved;
+        self.no_onhold := self.no_onhold + 1;
+        s.hold(self)
+    end
+    return(r : Copy)
+    begin
+        delete (self,r) from HasBorrowed;
+        self.no_onloan := self.no_onloan -1;
+        r.return(self)
+    end          
+end
+       
+class Staff
+	attributes
+		name : String
+		age : Integer
+		salary : Real
+end
+
+class Company
+	attributes
+		name : String
+		location : String
+	operations
+		hire(p : Staff)
+		fire(p : Staff)
+end
+
+association WorksFor between
+  Staff[*] role employee
+  Company[0..1] role employer
+end
+
+association HasBorrowed between
+    Member[0..1] role borrower
+    Copy[*] role borrowed
+end
+
+association CopyOf between
+    Copy[1..*] role copies
+    Book[1] role book
+end
+
+association HasReserved between
+    Member[0..1] role holder
+    Copy[*] role held
+end
+
+class Dvd
+	attributes
+		D_title : String
+        D_author : String
+        D_status : DVDStatus init = #available
+        D_no_copies : Integer init = 2
+        D_no_onshelf : Integer init = 2
+	operations
+        borrowDVD()
+        begin
+            self.D_no_onshelf := self.D_no_onshelf - 1;
+            if (self.D_no_onshelf = 0) then 
+                self.D_status := #unavailable 
+            end
+        end      
+        
+        returnDVD() begin
+            self.D_no_onshelf := self.D_no_onshelf + 1;
+            self.D_status := #available
+        end 
+        post: D_no_onshelf = D_no_onshelf@pre + 1
+
+statemachines
+        psm States
+        states                        
+            newTitle : initial
+            available       [D_no_onshelf > 0]
+            unavailable     [D_no_onshelf = 0]
+        transitions
+            newTitle ->  available  { create }
+            available -> unavailable { [D_no_onshelf = 1] borrowDVD() }
+            available -> available { [D_no_onshelf > 1] borrowDVD() }
+            available -> available { returnDVD() }
+            unavailable -> available { returnDVD() }
+        end
+ end
+ 
+constraints
+
+context Member::borrow(c:Copy)
+	pre cond5: c.isDefined()
+    pre limit: self.no_onloan < 1
+    pre cond1: self.borrowed->excludes(c)
+    post cond2: self.borrowed->includes(c)
+
+context Member::hold(s:Copy)
+    pre limit: self.no_onhold < 1
+    pre cond3: self.held->excludes(s)
+    post cond4: self.held->includes(s)
+	
+context Company::hire(p : Staff)
+  pre  hirePre1: p.isDefined()
+  pre  hirePre2: employee->excludes(p)
+  post hirePost: employee->includes(p)
+
+context Company::fire(p : Staff)
+  pre  firePre:  employee->includes(p)
+  post firePost: employee->excludes(p)
