@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<!-- Database Assignment 10/10/17 C16394453 -->
+
+<html>
+	<head>
+		<title>Thomas Killeen C16394453</title>
+		<meta charset="UTF-8">
+		<meta name="keywords"    content="Database">
+		<meta name="description" content="A small database website for my assignment">
+		<meta name="author"      content="Thomas Killeen">
+		<link rel="stylesheet" type="text/css" href="./css/mystyles.css">
+	</head>
+	<body>
+		<h1>Database Assignment 1, Thomas Killeen, C16394453, DT228 2</h1>
+		<h2>Entities</h2>
+		<p>When choosing the entities, I needed to add I made sure I was careful at which ones were needed and others that might not be needed. I added the entities that were outlined in the brief and made sure to capitalize the first letter for the names of the entities, and made sure that they were relevant names. I chose two more entities that weren’t as relevant as the others, but still important enough to be added, which were Console, and accessory. The others were outlined in the brief and have attributes laid out where Console and Accessory I just based off Game. Stock was the most important entity as it is the basis for the rest of the entities. </p>
+		<h2>Atributes</h2>
+		<p>In the brief the attributes are shown for each of the entities which is what the attributes are based off. The only thing that I had to determine was the data type they were. Most were VARCHAR2 as this allows much more freedom with the addition of letters and numbers. Anything that was specified I added, for example: DATE. Anything just numeric I assigned NUMBER. I had to make sure to give the appropriate number to the datatypes, for example: if specified only has 5 numbers, NUMBER(5). Anything like names or emails I would give, VARCHAR2(50) as you must remember and adhere to name lengths. I also made sure when naming the attributes, I adhered to the brief and made sure that they didn’t start with or have a capital letter.</p>
+		<h2>Keys</h2>
+		<p>I had to make sure that I chose the correct attribute to make the primary key. This was important but wasn't too bad as the brief gave an outline of what was the primary key and from there you could determine what the foreign key was. Some were a little more difficult to determine than others.</p>
+		<h2>Relationships</h2>
+		<p>I had the most difficulties with this as I found it hard to think logically which relationship each entity has with another. I had to determine if they were one to many, many to many, etc. I could think it through and come up with the right relationships for the entities. But some were off throwing and especially with the stock entity as it was connected to so many different entities.</p>
+		<h2>Constraints</h2>
+		<p>I assigned the NOT NULL constraint to any attribute I felt might need it. For example: names are important so I made sure to make them NOT NULL as you had to add them. The entities such as game, console and accessory didnt really need NOT NULL constraints as they might not have been orderd for example.</p>
+		<p>For the UNIQUE constraints I followed what it was in the brief and made the attributes that said they were unique, UNIQUE. This was important as for example you couldn’t have two sales representatives with the same code.</p>
+		<p>I had a few VALUE constraints, I made anything that was outlined in the brief have a constraint that was appropriate. For example: a code must only have five digits or an email must have the '@' symbol. I made sure to use unique and appropriate names when naming the constraints.</p>
+	</body>
+</html>
