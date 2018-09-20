@@ -1,0 +1,33 @@
+model CompanySys2
+
+class Company
+	attributes
+		companyname : String
+		location : String
+	operations
+		hire(p:Integer, acc:Person)
+		fire(p:Integer, acc:Person)
+		doHire(e:Person)
+		doFire(e:Person)
+		doRaiseSalary(r:Person)
+end
+
+class Person
+	attributes
+		name : String
+		age : Integer
+	operations
+		raiseSalary(rate:Real)
+end
+
+class Contract < Company
+	attributes
+		role: String
+		salary : Real 
+	operations
+end
+
+association WorksFor between
+	Company[1] role employer
+	Person[*] role employee
+end

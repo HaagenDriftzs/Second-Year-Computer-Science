@@ -1,0 +1,8 @@
+!create tom:Person
+!tom.name := 'Tom'
+!tom.age := 21
+!create dell:Company
+!dell.name := 'Dell'
+!dell.location := 'Cherrywood'
+!dell.salary := 50000
+!insert (dell, tom) into WorksFor

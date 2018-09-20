@@ -1,0 +1,25 @@
+model CompanySys
+
+class Company
+	attributes
+		name : String
+		location : String
+		salary : Real
+
+	operations
+		hire(p:Integer)
+		fire(p:Integer)
+end
+
+class Person
+	attributes
+		name : String
+		age : Integer
+	operations
+		raiseSalary(rate:Real)
+end
+
+association WorksFor between
+	Company[1] role employer
+	Person[*] role employee
+end

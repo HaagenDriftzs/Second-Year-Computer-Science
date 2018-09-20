@@ -1,0 +1,25 @@
+/* mystyles.css index.html 30/9/2015 TK */
+
+body{
+	background-color : lightblue;
+	color: blue;
+	
+}
+
+header/* I wanted the header to be bright and vibrant with a nice font style*/
+{
+	text-align: center;
+	clear:both;
+	font-size: 50px;
+	font-style: italic;
+	padding:5px;
+	color:orange;
+}
+
+footer/*In the footer I added my credentials and also the css validators*/
+{
+	text-align: center;
+	clear:both;
+	width:100%;
+	color:orange;
+}

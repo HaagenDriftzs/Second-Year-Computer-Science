@@ -1,0 +1,22 @@
+!create tom:Person
+!tom.name := 'Tom'
+!tom.age := 21
+!create joe:Person
+!tom.name := 'Joe'
+!tom.age := 32
+!create paul:Person
+!paul.name := 'Paul'
+!paul.age := 40
+!create	software:Contract
+!software.companyname := 'Dell'
+!software.location := 'Cherrywood'
+!software.role := 'Software Enginer'
+!software.salary := 50000
+!create	management:Contract
+!management.companyname := 'IBM'
+!management.location := 'Dublin'
+!management.role := 'Software Manager'
+!management.salary := 100000
+!insert (software, tom) into WorksFor
+!insert (management, joe) into WorksFor
+!insert (software, paul) into WorksFor

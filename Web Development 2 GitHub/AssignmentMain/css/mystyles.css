@@ -1,0 +1,95 @@
+/* mystyles.css index.html 30/9/2015 TK */
+/*A simple grey background with some black font*/
+body{
+	background-color : lightgrey;
+	color: black;
+	
+}
+/*The haeader is large and orange to make it stand out*/
+header
+{
+	text-align: center;
+	clear:both;
+	font-size: 50px;
+	font-style: italic;
+	padding:5px;
+	color:orange;
+}
+/*This is for the menu system with incorperates clickable link
+Its designed to look visulally appeaseing and works with the footers
+design*/
+ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 20px;
+	overflow: hidden;
+	background-color: orange;	
+}
+li 
+{
+	float: left;
+}
+li a 
+{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;	
+}
+li a:hover
+{
+	background-color: green;
+}
+/*Form for the login*/
+form#username
+{
+	border:5px solid orange;
+	height: auto;
+	width:auto;
+	float: left;
+	padding:15px;
+}
+/*The form for the registration*/
+form#fullname
+{
+	border:5px solid orange;
+	height: auto;
+	width:auto;
+	float: left;
+	padding:15px;
+	margin-bottom: 20px;
+}
+/*For the search form very similar to the last two*/
+form#search
+{
+	border:5px solid orange;
+	height: auto;
+	width:auto;
+	float: left;
+	padding:15px;
+	clear: left;
+	margin-bottom: 20px;
+}
+/*This is just for the seperate links to make them look nicer*/
+div
+{
+	border:5px solid orange;
+	height: auto;
+	width:auto;
+	float: left;
+	padding:15px;
+	clear: left;
+	margin-bottom: 20px;
+}
+/*Is like the menu to stand out*/
+footer
+{
+	clear: both;
+	text-align: center;
+	background-color: orange;
+	padding: 5px;
+	color: white;
+}
